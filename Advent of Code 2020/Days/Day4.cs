@@ -23,7 +23,7 @@ namespace Advent_of_Code_2020.Days
         {
             
             var validPass = 0;
-            var lines = File.ReadAllText(@"C:\Users\Kyle Rinne\source\repos\Advent of Code 2020\Advent of Code 2020\Input\Day4.txt");
+            var lines = File.ReadAllText(@"C:\Users\{name}\source\repos\Advent of Code 2020\Advent of Code 2020\Input\Day4.txt");
             var passports = lines.Split(new string[] { Environment.NewLine, Environment.NewLine }, StringSplitOptions.None).ToList();
             foreach(var pass in passports)
             {
@@ -58,7 +58,7 @@ namespace Advent_of_Code_2020.Days
 
         public static int PartTwo(string[] input)
         {
-            var lines = File.ReadAllText(@"C:\Users\Kyle Rinne\source\repos\Advent of Code 2020\Advent of Code 2020\Input\Day4.txt");
+            var lines = File.ReadAllText(@"C:\Users\{name}\source\repos\Advent of Code 2020\Advent of Code 2020\Input\Day4.txt");
             var passports = lines.Split(new string[] { Environment.NewLine, Environment.NewLine }, StringSplitOptions.None).ToList();
             var valid = 0;
             var validPass = new List<bool>();
