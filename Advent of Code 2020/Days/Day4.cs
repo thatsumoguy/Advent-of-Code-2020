@@ -66,7 +66,6 @@ namespace Advent_of_Code_2020.Days
             {
                 if(pass == "")
                 {
-                    
                     if (validPass.All(b => b == true) && !required.Any())
                     {
                         valid++;
@@ -90,8 +89,7 @@ namespace Advent_of_Code_2020.Days
                 {
                     if (key[0] != "" && key[0] != "cid")
                     {
-                        var validCurrent = Validate(key);
-                        validPass.Add(validCurrent);
+                        validPass.Add(Validate(key));
                     }
                 }
             }
@@ -131,7 +129,7 @@ namespace Advent_of_Code_2020.Days
                     }
                 case "hcl":
                     var allowed = "abcdef0123456789";
-                    return value.Length >= 1 && value.First() == '#' && value.Length == 7 && value.Skip(1).All(c => allowed.Contains(c));
+                    return value.First() == '#' && value.Length == 7 && value.Skip(1).All(c => allowed.Contains(c));
                 case "ecl":
                     var allowedEyes = new List<string>
                         {
