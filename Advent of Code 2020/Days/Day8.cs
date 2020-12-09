@@ -16,33 +16,32 @@ namespace Advent_of_Code_2020.Days
 
         public static int PartTwo(string[] input)
         {
-            var outcome = (false,0);
-            string[] cpyInput = new string[input.Length];
-            while(!outcome.Item1)
+            var outcome = (infinite: false, acc: 0);
+            string[] temp = new string[input.Length];
+            while(true)
             {
                 for (var i = 0; i < input.Length; i++)
                 {
                     if (input[i].Split(" ")[0] == "nop")
                     {
-                        Array.Copy(input, cpyInput, input.Length);
-                        cpyInput[i] = cpyInput[i].Replace("nop", "jmp");
-                        GameConsole.ReadInput(cpyInput);
+                        Array.Copy(input, temp, input.Length);
+                        temp[i] = temp[i].Replace("nop", "jmp");
+                        GameConsole.ReadInput(temp);
                         outcome = GameConsole.RunInput();
                     }
                     if (input[i].Split(" ")[0] == "jmp")
                     {
-                        Array.Copy(input, cpyInput, input.Length);
-                        cpyInput[i] = cpyInput[i].Replace("jmp", "nop");
-                        GameConsole.ReadInput(cpyInput);
+                        Array.Copy(input, temp, input.Length);
+                        temp[i] = temp[i].Replace("jmp", "nop");
+                        GameConsole.ReadInput(temp);
                         outcome = GameConsole.RunInput();
                     }
-                    if (!outcome.Item1)
+                    if (!outcome.infinite)
                     {
-                        return outcome.Item2;
+                        return outcome.acc;
                     }
                 }
             }
-            return 0;
         }
     }
 }

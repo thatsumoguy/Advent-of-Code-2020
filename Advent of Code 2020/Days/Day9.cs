@@ -35,7 +35,7 @@ namespace Advent_of_Code_2020.Days
         public static long PartTwo(string[] input)
         {
             var xmas = input.Select(x => long.Parse(x)).ToArray();
-            var invalidNum = 0l;
+            var invalidNum = 0L;
             foreach (var r in Enumerable.Range(25, input.Length))
             {
                 var matched = false;
@@ -55,12 +55,11 @@ namespace Advent_of_Code_2020.Days
                     break;
                 }
             }
-            //var xmasSlice = new ArraySegment<long>(xmas);
-            foreach(var i in Enumerable.Range(0, xmas.Count()))
+            foreach(var i in Enumerable.Range(0, xmas.Length))
             {
                 foreach(var j  in Enumerable.Range(i + 2, i))
                 {
-                    var count = xmas.Count();
+                    var count = xmas.Length;
                     var current = xmas[i..j];
                     var sum = current.Sum();
                     if(sum == invalidNum)
