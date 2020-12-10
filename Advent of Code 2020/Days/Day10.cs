@@ -35,7 +35,7 @@ namespace Advent_of_Code_2020.Days
             var joltages = input.Select(x => int.Parse(x)).Append(0).OrderBy(x => x).ToArray();
             var steps = new long[joltages.Length];
             steps[0] = 1;
-            foreach(var i  in Enumerable.Range(1, joltages.Length - 1))
+            foreach(var i in Enumerable.Range(1, joltages.Length - 1))
             {
                 foreach(var j in Enumerable.Range(0, i))
                 {
