@@ -59,7 +59,6 @@ namespace Advent_of_Code_2020.Days
             {
                 foreach(var j  in Enumerable.Range(i + 2, i))
                 {
-                    var count = xmas.Length;
                     var current = xmas[i..j];
                     var sum = current.Sum();
                     if(sum == invalidNum)
