@@ -33,16 +33,19 @@ namespace Advent_of_Code_2020.Days
         public static long PartTwo(string[] input)
         {
             var joltages = input.Select(x => int.Parse(x)).Append(0).OrderBy(x => x).ToArray();
-            var deviceJolt = joltages.Max() + 3;
-            var steps = new Dictionary<int, long> { { deviceJolt, 1 } };
-            foreach(var jolt in joltages.Reverse())
+            var steps = new long[joltages.Length];
+            steps[0] = 1;
+            foreach(var i  in Enumerable.Range(1, joltages.Length - 1))
             {
-                steps.TryGetValue(jolt + 1, out long j1);
-                steps.TryGetValue(jolt + 2, out long j2);
-                steps.TryGetValue(jolt + 3, out long j3);
-                steps[jolt] = j1 + j2 + j3;
+                foreach(var j in Enumerable.Range(0, i))
+                {
+                    if(joltages[i] - joltages[j] <= 3)
+                    {
+                        steps[i] += steps[j];
+                    }
+                }
             }
-            return steps[0];
+            return steps.Last();
         }
     }
 }
