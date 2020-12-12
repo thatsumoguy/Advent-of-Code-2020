@@ -8,9 +8,9 @@ namespace Advent_of_Code_2020
     {
         static void Main(string[] args)
         {
-            var input = File.ReadAllLines(@"C:\Users\Kyle Rinne\source\repos\Advent of Code 2020\Advent of Code 2020\Input\Day11.txt");
-            Console.WriteLine("Part One: " + Days.Day11.PartOne(input));
-            Console.WriteLine("Part Two: " + Days.Day11.PartTwo(input));
+            var input = File.ReadAllLines(@"C:\Users\Kyle Rinne\source\repos\Advent of Code 2020\Advent of Code 2020\Input\Day12.txt");
+            Console.WriteLine("Part One: " + Days.Day12.PartOne(input));
+            Console.WriteLine("Part Two: " + Days.Day12.PartTwo(input));
             Console.ReadLine();
         }
     }

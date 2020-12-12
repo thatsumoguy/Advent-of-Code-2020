@@ -9,7 +9,6 @@ namespace Advent_of_Code_2020.Days
     class Day11
     {
         static Dictionary<(int, int), bool> Seats = new Dictionary<(int, int), bool>();
-        static Dictionary<(int, int), bool> Seats2;
         private static readonly List<(int, int)> Neighbors = new List<(int x, int y)>()
         {
             (1,0),
@@ -26,8 +25,8 @@ namespace Advent_of_Code_2020.Days
 
         public static int PartOne(string[] input)
         {
-            maxY = input.Count();
-            for (int j = 0; j < input.Count(); j++)
+            maxY = input.Length;
+            for (int j = 0; j < input.Length; j++)
             {
                 for (int i = 0; i < input[j].Length; i++)
                 {
@@ -36,7 +35,6 @@ namespace Advent_of_Code_2020.Days
                     if (i > maxX) maxX = i;
                 }
             }
-            Seats2 = new Dictionary<(int, int), bool>(Seats);
             var seatsChanged = int.MaxValue;
             do
             {
@@ -58,8 +56,8 @@ namespace Advent_of_Code_2020.Days
 
         public static int PartTwo(string[] input)
         {
-            maxY = input.Count();
-            for (int j = 0; j < input.Count(); j++)
+            maxY = input.Length;
+            for (int j = 0; j < input.Length; j++)
             {
                 for (int i = 0; i < input[j].Length; i++)
                 {
@@ -68,8 +66,6 @@ namespace Advent_of_Code_2020.Days
                     if (i > maxX) maxX = i;
                 }
             }
-            Seats2 = new Dictionary<(int, int), bool>(Seats);
-            Seats = new Dictionary<(int, int), bool>(Seats2);
             int seatsChanged = int.MaxValue;
             do
             {
