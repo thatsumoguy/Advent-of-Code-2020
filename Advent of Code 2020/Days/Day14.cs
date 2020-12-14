@@ -21,7 +21,7 @@ namespace Advent_of_Code_2020.Days
                 }
                 var startBracket = line.IndexOf("[") + 1;
                 var lastBracket = line.LastIndexOf("]");
-                var index = int.Parse(line.Substring(startBracket, lastBracket - startBracket));
+                var index = int.Parse(line[startBracket..lastBracket]);
                 var value = Convert.ToString(int.Parse(line.Split("= ")[1]), 2).PadLeft(36, '0').ToArray();
                 for(var i = 0; i < mask.Length; i++)
                 {
