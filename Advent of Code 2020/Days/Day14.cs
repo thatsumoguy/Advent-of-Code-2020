@@ -23,7 +23,7 @@ namespace Advent_of_Code_2020.Days
                 var lastBracket = line.LastIndexOf("]");
                 var index = int.Parse(line[startBracket..lastBracket]);
                 var value = Convert.ToString(int.Parse(line.Split("= ")[1]), 2).PadLeft(36, '0').ToArray();
-                for(var i = 0; i < mask.Length; i++)
+                for (var i = 0; i < mask.Length; i++)
                 {
                     value[i] = mask[i] == 'X' ? value[i] : mask[i];
                 }
@@ -69,7 +69,7 @@ namespace Advent_of_Code_2020.Days
             else
             {
                 var index = address.IndexOf("X");
-                return GenerateAddresses(index < 0 ? address : address.Remove(index, 1).Insert(index, "0")).Concat(GenerateAddresses(index < 0 ? address : address.Remove(index, 1).Insert(index, "1")));
+                return GenerateAddresses(address.Remove(index, 1).Insert(index, "0")).Concat(GenerateAddresses(address.Remove(index, 1).Insert(index, "1")));
             }
         }
     }
