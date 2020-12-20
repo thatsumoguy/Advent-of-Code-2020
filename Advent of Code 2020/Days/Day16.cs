@@ -13,24 +13,25 @@ namespace Advent_of_Code_2020.Days
         static List<TicketInfo> UpperLowerLimits = new List<TicketInfo>();
         static List<string> tickets;
         static List<string> validTickets;
+        public record TicketInfo (string name, int MinLow, int MinHigh, int MaxLow, int MaxHigh);
         public static long PartOne(string[] input)
         {
             //I tried to have a standard across all days, but this day makes it pain to do so, so I am just going to read in the input here instead
-            var lines = File.ReadAllText(@"C:\Users\Kyle Rinne\source\repos\Advent of Code 2020\Advent of Code 2020\Input\Day16.txt").Split("\r\n\r\n");
-            foreach (var line in lines[0].SplitLines())
+            var lines = File.ReadAllText(@"C:\Users\Kyle Rinne\source\repos\Advent of Code 2020\Advent of Code 2020\Input\Day16.txt").Split("\r\n\r\n", StringSplitOptions.RemoveEmptyEntries);
+            foreach (var line in lines[0].Split("\n"))
             {
-                var ticketInfo = new TicketInfo();
                 var nameSplit = line.Split(":");
-                ticketInfo.name = nameSplit[0];
+                var ticketName = nameSplit[0];
                 var values = nameSplit[1].Split("- or".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
                 if(values.Length == 4)
                 {
-                    ticketInfo.MinLow = int.Parse(values[0]);
-                    ticketInfo.MinHigh = int.Parse(values[1]);
-                    ticketInfo.MaxLow = int.Parse(values[2]);
-                    ticketInfo.MaxHigh = int.Parse(values[3]);
+                    var ticketMinLow = int.Parse(values[0]);
+                    var ticketMinHigh = int.Parse(values[1]);
+                    var ticketMaxLow = int.Parse(values[2]);
+                    var ticketMaxHigh = int.Parse(values[3]);
+                    var ticketInfo = new TicketInfo(ticketName, ticketMinLow, ticketMinHigh, ticketMaxLow, ticketMaxHigh);
+                    UpperLowerLimits.Add(ticketInfo);
                 }
-                UpperLowerLimits.Add(ticketInfo);
             }
             tickets = new List<string>(lines[2].SplitLines());
             tickets.RemoveAt(0);
@@ -63,7 +64,7 @@ namespace Advent_of_Code_2020.Days
         public static long PartTwo(string[] input)
         {
             //I tried to have a standard across all days, but this day makes it pain to do so, so I am just going to read in the input here instead
-            var lines = File.ReadAllText(@"C:\Users\Kyle Rinne\source\repos\Advent of Code 2020\Advent of Code 2020\Input\Day16.txt").Split("\r\n\r\n");
+            var lines = File.ReadAllText(@"C:\Users\Kyle Rinne\source\repos\Advent of Code 2020\Advent of Code 2020\Input\Day16.txt").Split("\r\n\r\n", StringSplitOptions.RemoveEmptyEntries);
             var correctFields = new Dictionary<int, string>();
             var matchedTickets = new Dictionary<(int ticketPosition, string ticketName), int>();
             var myTicket = lines[1].Split("\n")[1].Split(",").Select(int.Parse).ToArray();
@@ -78,7 +79,7 @@ namespace Advent_of_Code_2020.Days
                     {
                         if((upperLower.MinLow <= field && upperLower.MinHigh >= field) || (upperLower.MaxLow <= field && upperLower.MaxHigh >= field))
                         {
-                            if(!matchedTickets.ContainsKey((ticketPosition, upperLower.name)))
+                            if (!matchedTickets.ContainsKey((ticketPosition, upperLower.name)))
                             {
                                 matchedTickets[(ticketPosition, upperLower.name)] = 1;
                             }
@@ -111,23 +112,11 @@ namespace Advent_of_Code_2020.Days
                     }
                 }
             }
-            foreach (var correct in correctFields)
+            foreach (var correct in correctFields.Where(x => x.Value.Contains("departure")))
             {
-                if (correct.Value.Contains("departure"))
-                {
-                    depFields *= myTicket[correct.Key];
-                }
+                depFields *= myTicket[correct.Key];
             }
             return depFields;
         }
-    }
-
-    internal class TicketInfo
-    {
-        public string name;
-        public int MinLow;
-        public int MinHigh;
-        public int MaxLow;
-        public int MaxHigh;
     }
 }
