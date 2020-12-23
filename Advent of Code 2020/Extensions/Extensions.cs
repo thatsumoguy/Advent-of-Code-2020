@@ -24,5 +24,9 @@ namespace Advent_of_Code_2020.Extensions
                     (current * modifier) + item.GetHashCode());
             }
         }
+        public static LinkedListNode<T> NextOrFirst<T>(this LinkedListNode<T> current)
+        {
+            return current.Next ?? current.List.First;
+        }
     }
 }
